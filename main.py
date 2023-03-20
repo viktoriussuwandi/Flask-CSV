@@ -24,6 +24,7 @@ class AddForm(FlaskForm) :
     "wifi"   : ['✘', '💪', '💪💪', '💪💪💪', '💪💪💪💪', '💪💪💪💪💪'],
     "power"  : ['✘', '🔌', '🔌🔌', '🔌🔌🔌', '🔌🔌🔌🔌', '🔌🔌🔌🔌🔌']
   }
+  
   coffee   = SelectField( label="coffee", choices = list["coffee"],
                           validators=[ DataRequired() ] )
   wifi     = SelectField( label="wifi", choices = list["wifi"], 
