@@ -19,7 +19,7 @@ def cafes() :
   with open ('cafe-data.csv',newline='') as f :
     file      = csv.reader(f, delimiter = ",")
     file_data = [row for row in file]
-  return render_template( "cafes.html", file_data = file_data )
+  return render_template( "cafes.html", cafes = file_data )
 
 if __name__ == "__main__" :
   app.run(debug=True, host="0.0.0.0", port=2000)
