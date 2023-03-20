@@ -74,7 +74,7 @@ def add() :
 @app.route("/cafes")
 def cafes() :
   with open ('cafe-data.csv','r') as f :
-    file      = csv.reader(f, delimiter = ",")
+    file      = reader(f, delimiter = ",")
     file_data = [row for row in file]
   return render_template( "cafes.html", cafes = file_data )
 
