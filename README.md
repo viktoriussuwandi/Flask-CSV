@@ -5,7 +5,7 @@
     * Bootstrap as Front-End CSS Framework
     * python Flask as Back-End Framework
     * Jinja 2 for data transfer with Front-End and Back-End
-    * CSV file
+    * CSV file to load and save data
 
 ### Development
 1. The `home page` should use the `css/styles.css` file to look like this:

@@ -161,12 +161,49 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "decorator"
+version = "5.1.1"
+description = "Decorators for Humans"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
+name = "dnspython"
+version = "2.3.0"
+description = "DNS toolkit"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.extras]
+doq = ["aioquic (>=0.9.20)"]
+dnssec = ["cryptography (>=2.6,<40.0)"]
+curio = ["curio (>=1.2,<2.0)", "sniffio (>=1.1,<2.0)"]
+doh = ["h2 (>=4.1.0)", "httpx (>=0.21.1)", "requests (>=2.23.0,<3.0.0)", "requests-toolbelt (>=0.9.1,<0.11.0)"]
+idna = ["idna (>=2.1,<4.0)"]
+trio = ["trio (>=0.14,<0.23)"]
+wmi = ["wmi (>=1.5.1,<2.0.0)"]
+
+[[package]]
 name = "dominate"
 version = "2.7.0"
 description = "Dominate is a Python library for creating and manipulating HTML documents using an elegant DOM API."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "email-validator"
+version = "1.3.1"
+description = "A robust email address syntax and deliverability validation library."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+dnspython = ">=1.15.0"
+idna = ">=2.0.0"
 
 [[package]]
 name = "flask"
@@ -230,6 +267,31 @@ description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
 python-versions = ">=3.5"
+
+[[package]]
+name = "infinity"
+version = "1.5"
+description = "All-in-one infinity value for Python. Can be compared to any object."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+test = ["pytest (>=2.2.3)", "Pygments (>=1.2)", "six (>=1.4.1)", "flake8 (>=2.4.0)", "isort (>=4.2.2)"]
+
+[[package]]
+name = "intervals"
+version = "0.9.2"
+description = "Python tools for handling intervals (ranges of comparable objects)."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+infinity = ">=0.1.3"
+
+[package.extras]
+test = ["pytest (>=2.2.3)", "Pygments (>=1.2)", "flake8 (>=2.4.0)", "isort (>=4.2.2)"]
 
 [[package]]
 name = "iso8601"
@@ -616,6 +678,20 @@ secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "cer
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
+name = "validators"
+version = "0.20.0"
+description = "Python Data Validation for Humans™."
+category = "main"
+optional = false
+python-versions = ">=3.4"
+
+[package.dependencies]
+decorator = ">=3.4.0"
+
+[package.extras]
+test = ["pytest (>=2.2.3)", "flake8 (>=2.4.0)", "isort (>=4.2.2)"]
+
+[[package]]
 name = "visitor"
 version = "0.1.3"
 description = "A tiny pythonic visitor implementation."
@@ -660,6 +736,27 @@ MarkupSafe = "*"
 email = ["email-validator"]
 
 [[package]]
+name = "wtforms-components"
+version = "0.10.5"
+description = "Additional fields, validators and widgets for WTForms."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+email-validator = ">=1.0.0"
+intervals = ">=0.6.0"
+MarkupSafe = ">=1.0.0"
+six = ">=1.4.1"
+validators = ">=0.5.0"
+WTForms = ">=1.0.4"
+
+[package.extras]
+color = ["colour (>=0.0.4)"]
+test = ["pytest (>=2.2.3)", "flexmock (>=0.9.7)", "WTForms-Test (>=0.1.1)", "flake8 (==3.8.4)", "isort (==4.3.21)", "colour (>=0.0.4)", "python-dateutil"]
+timezone = ["python-dateutil"]
+
+[[package]]
 name = "yapf"
 version = "0.32.0"
 description = "A formatter for Python code."
@@ -682,7 +779,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "b131c8ce2639c672ccc861e75178612a9150f1fd51e9ed25de717fe82c20efe4"
+content-hash = "12d8b0b7940f93115d0a64dab00170075fc5f32dc823b94bd83631ebb50ba92c"
 
 [metadata.files]
 aiohttp = []
@@ -698,12 +795,17 @@ click = []
 colorama = []
 cryptography = []
 debugpy = []
+decorator = []
+dnspython = []
 dominate = []
+email-validator = []
 flask = []
 flask-bootstrap = []
 flask-wtf = []
 frozenlist = []
 idna = []
+infinity = []
+intervals = []
 iso8601 = []
 itsdangerous = []
 jedi = []
@@ -736,9 +838,11 @@ tomli = []
 typing-extensions = []
 ujson = []
 urllib3 = []
+validators = []
 visitor = []
 werkzeug = []
 whatthepatch = []
 wtforms = []
+wtforms-components = []
 yapf = []
 yarl = []

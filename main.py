@@ -1,23 +1,24 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-import csv
+from csv import writer, reader
 from flask_wtf import FlaskForm
 from wtforms import StringField, TimeField, SelectField, SubmitField
 from wtforms.validators import DataRequired, URL
+import os
 
 # ---------------------------------------------------------------------------------------
 # FORM VALIDATION
 # ---------------------------------------------------------------------------------------
-
+TIME_INPUT_FORMATS = ('%I:%M %p',)
 class AddForm(FlaskForm) :
   
   name     = StringField( label="name", validators=[ DataRequired() ] )
   location = StringField( label="location", validators=[ DataRequired(), URL() ] )
   
-  open     = TimeField( label="open", validators=[ DataRequired() ],
-                        format='%H:%M:%S', render_kw={"step": "1"} )
-  close    = TimeField( label="close", validators=[ DataRequired() ],
-                        format='%H:%M:%S', render_kw={"step": "1"} )
+  open     = TimeField( label="open", format='%H:%M:%S',
+                        render_kw={"step": "1"}, validators=[ DataRequired() ])
+  close    = TimeField( label="close", format='%H:%M:%S',
+                        render_kw={"step": "1"}, validators=[ DataRequired() ])
 
   list     = {
     "coffee" : ['✘','☕', '☕☕', '☕☕☕', '☕☕☕☕', '☕☕☕☕☕'],
@@ -40,7 +41,7 @@ class AddForm(FlaskForm) :
 # ---------------------------------------------------------------------------------------
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ['form_token']
 Bootstrap(app)
 
 # ---------------------------------------------------------------------------------------
@@ -51,18 +52,20 @@ Bootstrap(app)
 def add() :
   add_form = AddForm()
   if add_form.validate_on_submit() :
+    
     registration_data = {
       'name'     : add_form.name.data,
       'location' : add_form.location.data,
-      'open'     : add_form.open.data,
-      'close'    : add_form.close.data,
+      'open'     : str(add_form.open.data),
+      'close'    : str(add_form.close.data),
       'coffee'   : add_form.coffee.data,
       'wifi'     : add_form.wifi.data,
       'power'    : add_form.power.data
     }
-    # Add to CSV  
+    save_data = [val for key,val in registration_data.items()]
+    with open ('cafe-data.csv','a') as f :
+      obj = writer(f); obj.writerow(save_data)
     return f'<h1> Registration Successfull </h1>\n{registration_data}'
-  # else : return '<h1> Registration Failed </h1>'
   return render_template("add.html", form = add_form)
 
 # ---------------------------------------------------------------------------------------
@@ -70,7 +73,7 @@ def add() :
 # ---------------------------------------------------------------------------------------
 @app.route("/cafes")
 def cafes() :
-  with open ('cafe-data.csv',newline='') as f :
+  with open ('cafe-data.csv','r') as f :
     file      = csv.reader(f, delimiter = ",")
     file_data = [row for row in file]
   return render_template( "cafes.html", cafes = file_data )
