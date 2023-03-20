@@ -13,8 +13,8 @@
 
    ![Home Page](static/img/1.gif)
 
-2. The `/cafes route` should render the `cafes.html` file. This file should contain a `Bootstrap table` which displays all the data from the `cafe-data.csv`
-   HINT: A object called `cafes` is passed to `cafes.html` from the `/cafes route`. Try putting it in a `<p>` to see what the data in cafes look like.
+2. The `/cafes` route should render the `cafes.html` file. This file should contain a `Bootstrap table` which displays all the data from the `cafe-data.csv`
+   HINT: A object called `cafes` is passed to `cafes.html` from the `/cafes` route. Try putting it in a `<p>` to see what the data in cafes look like.
 
    ![Cafe Page](static/img/2.gif)
 
@@ -28,7 +28,7 @@
   
    ![Cafe Page](static/img/4.gif)
 
-5. There should be a secret route `"/add` which doesn't have a button, but those in the know should be able to access it and it should take you to the `add.html` file.
+5. There should be a secret route `/add` which doesn't have a button, but those in the know should be able to access it and it should take you to the `add.html` file.
   
    ![Form Page](static/img/5.gif)
 
