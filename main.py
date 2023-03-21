@@ -9,7 +9,6 @@ import os
 # ---------------------------------------------------------------------------------------
 # FORM VALIDATION
 # ---------------------------------------------------------------------------------------
-TIME_INPUT_FORMATS = ('%I:%M %p',)
 class AddForm(FlaskForm) :
   
   name     = StringField( label="name", validators=[ DataRequired() ] )
@@ -34,7 +33,6 @@ class AddForm(FlaskForm) :
                            validators=[ DataRequired() ] )
   
   submit   = SubmitField( label= "Submit")
-  pass
   
 # ---------------------------------------------------------------------------------------
 # FLASK APP
